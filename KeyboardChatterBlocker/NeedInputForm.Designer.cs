@@ -77,7 +77,11 @@
             "Mouse Middle (M3)",
             "Mouse Wheel Change",
             "Mouse Side Forward (M4)",
-            "Mouse Side Backward (M5)"});
+            "Mouse Side Backward (M5)",
+            "Arrow Up",
+            "Arrow Down",
+            "Arrow Right",
+            "Arrow Left"});
             this.AlternateInputsBox.Location = new System.Drawing.Point(248, 37);
             this.AlternateInputsBox.Name = "AlternateInputsBox";
             this.AlternateInputsBox.Size = new System.Drawing.Size(150, 21);

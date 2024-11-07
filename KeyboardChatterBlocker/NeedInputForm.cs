@@ -98,6 +98,10 @@ namespace KeyboardChatterBlocker
                 case "Mouse Wheel Change": key = KeysHelper.KEY_WHEEL_CHANGE; break;
                 case "Mouse Side Forward (M4)": key = KeysHelper.KEY_MOUSE_FORWARD; break;
                 case "Mouse Side Backward (M5)": key = KeysHelper.KEY_MOUSE_BACKWARD; break;
+                case "Arrow Up": key = Keys.Up; break;
+                case "Arrow Down": key = Keys.Down; break;
+                case "Arrow Right": key = Keys.Right; break;
+                case "Arrow Left": key = Keys.Left; break;
             }
             if (key == Keys.None)
             {
