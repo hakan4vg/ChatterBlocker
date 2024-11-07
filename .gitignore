@@ -4,3 +4,4 @@ obj/
 [Rr]elease/
 [Dd]ebug/
 other/chocolatey-files/tools/
+*.npkg
