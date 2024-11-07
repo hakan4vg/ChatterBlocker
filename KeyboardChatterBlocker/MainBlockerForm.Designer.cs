@@ -67,6 +67,7 @@
             this.AddToListButton = new System.Windows.Forms.Button();
             this.AddProgramTextBox = new System.Windows.Forms.TextBox();
             this.otherSettingsTabPage = new System.Windows.Forms.TabPage();
+            this.SaveStatsCheckbox = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.MeasureFromComboBox = new System.Windows.Forms.ComboBox();
             this.OtherKeyResetsCheckbox = new System.Windows.Forms.CheckBox();
@@ -418,6 +419,7 @@
             // AutoDisableOnFullscreenCheckbox
             // 
             this.AutoDisableOnFullscreenCheckbox.AutoSize = true;
+            this.AutoDisableOnFullscreenCheckbox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.AutoDisableOnFullscreenCheckbox.Location = new System.Drawing.Point(258, 5);
             this.AutoDisableOnFullscreenCheckbox.Name = "AutoDisableOnFullscreenCheckbox";
             this.AutoDisableOnFullscreenCheckbox.Size = new System.Drawing.Size(167, 17);
@@ -489,6 +491,7 @@
             // 
             // otherSettingsTabPage
             // 
+            this.otherSettingsTabPage.Controls.Add(this.SaveStatsCheckbox);
             this.otherSettingsTabPage.Controls.Add(this.label1);
             this.otherSettingsTabPage.Controls.Add(this.MeasureFromComboBox);
             this.otherSettingsTabPage.Controls.Add(this.OtherKeyResetsCheckbox);
@@ -499,6 +502,18 @@
             this.otherSettingsTabPage.Text = "Other Settings";
             this.otherSettingsTabPage.UseVisualStyleBackColor = true;
             // 
+            // SaveStatsCheckbox
+            // 
+            this.SaveStatsCheckbox.AutoSize = true;
+            this.SaveStatsCheckbox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.SaveStatsCheckbox.Location = new System.Drawing.Point(81, 51);
+            this.SaveStatsCheckbox.Name = "SaveStatsCheckbox";
+            this.SaveStatsCheckbox.Size = new System.Drawing.Size(127, 17);
+            this.SaveStatsCheckbox.TabIndex = 3;
+            this.SaveStatsCheckbox.Text = "Save Persistent Stats";
+            this.SaveStatsCheckbox.UseVisualStyleBackColor = true;
+            this.SaveStatsCheckbox.CheckedChanged += new System.EventHandler(this.SaveStatsCheckbox_CheckedChanged);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -508,23 +523,24 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Measure From:";
             // 
-            // measureFromComboBox
+            // MeasureFromComboBox
             // 
             this.MeasureFromComboBox.FormattingEnabled = true;
             this.MeasureFromComboBox.Items.AddRange(new object[] {
             "Press",
             "Release"});
             this.MeasureFromComboBox.Location = new System.Drawing.Point(87, 24);
-            this.MeasureFromComboBox.Name = "measureFromComboBox";
+            this.MeasureFromComboBox.Name = "MeasureFromComboBox";
             this.MeasureFromComboBox.Size = new System.Drawing.Size(121, 21);
             this.MeasureFromComboBox.TabIndex = 1;
             this.MeasureFromComboBox.SelectedIndexChanged += new System.EventHandler(this.MeasureFromComboBox_SelectedIndexChanged);
             // 
-            // otherKeyResetsCheckbox
+            // OtherKeyResetsCheckbox
             // 
             this.OtherKeyResetsCheckbox.AutoSize = true;
-            this.OtherKeyResetsCheckbox.Location = new System.Drawing.Point(4, 4);
-            this.OtherKeyResetsCheckbox.Name = "otherKeyResetsCheckbox";
+            this.OtherKeyResetsCheckbox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.OtherKeyResetsCheckbox.Location = new System.Drawing.Point(58, 3);
+            this.OtherKeyResetsCheckbox.Name = "OtherKeyResetsCheckbox";
             this.OtherKeyResetsCheckbox.Size = new System.Drawing.Size(150, 17);
             this.OtherKeyResetsCheckbox.TabIndex = 0;
             this.OtherKeyResetsCheckbox.Text = "Other Keys Reset Timeout";
@@ -720,6 +736,7 @@
         private System.Windows.Forms.CheckBox OtherKeyResetsCheckbox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox MeasureFromComboBox;
+        private System.Windows.Forms.CheckBox SaveStatsCheckbox;
     }
 }
 

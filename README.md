@@ -83,6 +83,7 @@ I've taken a similar approach to the software solutions mentioned above, but wit
 - `hotkey_tempblock`: set to a key combo (any list of keys separated by `+`). Refer to [Microsoft Keys Enum](https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.keys?view=netframework-4.7.2) for a list of valid key IDs. Note that you need to use precise key IDs, such as `LShiftKey` (for left shift) rather than generic ones like `Shift`. If you have `hotkey_tempblock` set, any time hold this combination down, all key inputs (down or up) will be discarded. If you have mouse buttons listed as blockable, mouse inputs will be blocked too. For example, `hotkey_tempblock: pause` will allow you to hold the Pause key at any time to pause all input recognition. This is useful for example to block press a key down, and then hold your Pause input to block the release, allowing an app to see it as still being held down (for example: press down on Shift, press down on Pause, release Shift, release Pause, then type - all your input text will then be capitalized).
 - `measure_from` set to `Press` or `Release` (defaults to `Press`) to choose when to measure chatter delay from - the last key press, or last key release.
 - `disable_tray_icon`: set to `true` to prevent the tray icon from appearing, even when "hidden to tray". The only way to bring the form up will be enabling `hotkey_showform` and pressing that key.
+- `save_stats`: set to `true` to save a persistent stats file to retain stat data over longer periods.
 
 ### Other Features
 

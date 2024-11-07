@@ -83,6 +83,19 @@ namespace KeyboardChatterBlocker
                     }
                 }
             }
+            if (SaveStats)
+            {
+                try
+                {
+                    LoadStatsFromFile();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Could not load stats file - delete 'blocker_stats.txt' to bypass this error:\n{ex}", "Failed to load stats", MessageBoxButtons.OK);
+                    Program.Close();
+                    return;
+                }
+            }
         }
 
         /// <summary>
@@ -199,6 +212,9 @@ namespace KeyboardChatterBlocker
                 case "disable_tray_icon":
                     Program.DisableTrayIcon = SettingAsBool(settingValue);
                     break;
+                case "save_stats":
+                    SaveStats = SettingAsBool(settingValue);
+                    break;
             }
         }
 
@@ -211,6 +227,10 @@ namespace KeyboardChatterBlocker
             string saveStr = GetConfigurationString();
             Directory.CreateDirectory(Path.GetDirectoryName(CONFIG_FILE));
             File.WriteAllText(CONFIG_FILE, saveStr);
+            if (SaveStats)
+            {
+                SaveStatsToFile();
+            }
         }
 
         /// <summary>
@@ -228,6 +248,10 @@ namespace KeyboardChatterBlocker
             if (Program.DisableTrayIcon)
             {
                 result.Append("disable_tray_icon: true\n");
+            }
+            if (SaveStats)
+            {
+                result.Append($"save_stats: true\n");
             }
             result.Append($"measure_from: {MeasureMode}\n");
             result.Append("\n");
@@ -338,6 +362,16 @@ namespace KeyboardChatterBlocker
         public bool OtherKeyResetsTimeout = false;
 
         /// <summary>
+        /// If true, save persistent stats to file.
+        /// </summary>
+        public bool SaveStats = false;
+
+        /// <summary>
+        /// Ticker, how many seconds since the last automatic stats save.
+        /// </summary>
+        public int SaveStatsTicker = 0;
+
+        /// <summary>
         /// Whether any key presses have occurred (and thus stats have changed).
         /// </summary>
         public bool AnyKeyChange = false;
@@ -351,6 +385,49 @@ namespace KeyboardChatterBlocker
         /// Action to play a sound when chatter is detected.
         /// </summary>
         public static Action PlayNotification = KBCUtils.GetSoundPlayer("chatter.wav");
+
+        /// <summary>
+        /// Save stats data to file.
+        /// </summary>
+        public void SaveStatsToFile()
+        {
+            StringBuilder output = new StringBuilder();
+            foreach (KeyValuePair<Keys, int> keyData in StatsKeyCount.MainDictionary)
+            {
+                int chatterTotal = StatsKeyChatter[keyData.Key];
+                output.Append($"{keyData.Key.Stringify()},{keyData.Value},{chatterTotal},\n");
+            }
+            File.WriteAllText("blocker_stats.csv", output.ToString());
+        }
+
+        /// <summary>
+        /// Load stats data from file.
+        /// </summary>
+        public void LoadStatsFromFile()
+        {
+            if (!File.Exists("blocker_stats.csv"))
+            {
+                return;
+            }
+            string[] lines = File.ReadAllText("blocker_stats.csv").Replace('\r', '\n').Split('\n');
+            foreach (string line in lines)
+            {
+                if (string.IsNullOrWhiteSpace(line))
+                {
+                    continue;
+                }
+                string[] parts = line.Split(',');
+                if (parts.Length < 3
+                    || !Enum.TryParse(parts[0], out Keys key)
+                    || !int.TryParse(parts[1], out int keyCount)
+                    || !int.TryParse(parts[2], out int chatterTotal))
+                {
+                    continue;
+                }
+                StatsKeyCount[key] = keyCount;
+                StatsKeyChatter[key] = chatterTotal;
+            }
+        }
 
         /// <summary>
         /// Called when a key-down event is detected, to decide whether to allow it through.

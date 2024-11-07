@@ -334,6 +334,7 @@ namespace KeyboardChatterBlocker
             ChatterThresholdBox.Value = Program.Blocker.GlobalChatterTimeLimit;
             MeasureFromComboBox.Text = Program.Blocker.MeasureMode.ToString();
             EnabledCheckbox.Checked = Program.Blocker.IsEnabled;
+            SaveStatsCheckbox.Checked = Program.Blocker.SaveStats;
             StartWithWindowsCheckbox.Checked = File.Exists(StartupLinkPath);
             OtherKeyResetsCheckbox.Checked = Program.Blocker.OtherKeyResetsTimeout;
             StatsUpdateTimer = new Timer { Interval = 1000 };
@@ -362,6 +363,14 @@ namespace KeyboardChatterBlocker
                 Program.Blocker.AnyKeyChange = false;
                 PushStatsToGrid();
             }
+            if (Program.Blocker.SaveStats)
+            {
+                Program.Blocker.SaveStatsTicker++;
+                if (Program.Blocker.SaveStatsTicker > 60 * 30)
+                {
+                    Program.Blocker.SaveStatsToFile();
+                }
+            }
         }
 
         /// <summary>
@@ -374,6 +383,7 @@ namespace KeyboardChatterBlocker
         /// </summary>
         public void MainBlockerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Program.Blocker.SaveConfig();
             if (ShouldForceClose)
             {
                 return;
@@ -746,6 +756,14 @@ namespace KeyboardChatterBlocker
                 Program.Blocker.MeasureMode = mode;
                 Program.Blocker.SaveConfig();
             }
+        }
+
+        /// <summary>
+        /// Event method to handle the 'save stats' checkbox state changing.
+        /// </summary>
+        private void SaveStatsCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.Blocker.SaveStats = SaveStatsCheckbox.Checked;
         }
     }
 }
