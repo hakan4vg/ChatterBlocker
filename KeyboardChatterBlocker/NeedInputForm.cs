@@ -54,7 +54,7 @@ namespace KeyboardChatterBlocker
         /// </summary>
         private void NeedInputForm_MouseDown(object sender, MouseEventArgs e)
         {
-            if (GUICancelButton.Bounds.Contains(e.Location))
+            if (GUICancelButton.Bounds.Contains(e.Location) || AlternateInputsBox.Bounds.Contains(e.Location))
             {
                 return;
             }
@@ -78,6 +78,32 @@ namespace KeyboardChatterBlocker
             {
                 SetResultKey(KeysHelper.KEY_MOUSE_FORWARD);
             }
+            Close();
+        }
+
+        /// <summary>
+        /// Event method auto-called when any clicking one of the alternate inputs in the alternate input dropdown box.
+        /// </summary>
+        private void AlternateInputsBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Keys key = Keys.None;
+            switch (AlternateInputsBox.Text)
+            {
+                case "Tab": key = Keys.Tab; break;
+                case "Enter": key = Keys.Enter; break;
+                case "Escape": key = Keys.Escape; break;
+                case "Mouse Left": key = KeysHelper.KEY_MOUSE_LEFT; break;
+                case "Mouse Right": key = KeysHelper.KEY_MOUSE_RIGHT; break;
+                case "Mouse Middle (M3)": key = KeysHelper.KEY_MOUSE_MIDDLE; break;
+                case "Mouse Wheel Change": key = KeysHelper.KEY_WHEEL_CHANGE; break;
+                case "Mouse Side Forward (M4)": key = KeysHelper.KEY_MOUSE_FORWARD; break;
+                case "Mouse Side Backward (M5)": key = KeysHelper.KEY_MOUSE_BACKWARD; break;
+            }
+            if (key == Keys.None)
+            {
+                return;
+            }
+            SetResultKey(key);
             Close();
         }
     }
