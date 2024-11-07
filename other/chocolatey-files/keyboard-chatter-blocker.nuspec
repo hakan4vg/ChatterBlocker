@@ -8,7 +8,7 @@
     <owners>Frenetic LLC</owners>
     <licenseUrl>https://github.com/FreneticLLC/KeyboardChatterBlocker/blob/master/LICENSE.txt</licenseUrl>
     <projectUrl>https://github.com/FreneticLLC/KeyboardChatterBlocker/blob/master/README.md</projectUrl>
-    <iconUrl>https://github.com/FreneticLLC/KeyboardChatterBlocker/blob/master/KeyboardChatterBlocker/keyboard.ico</iconUrl>
+    <iconUrl>https://cdn.freneticllc.com/keyboard.ico</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>KeyboardChatterBlocker is a quick handy tool to block mechanical keyboard chatter on Windows PCs. For more information view the GitHub readme at https://github.com/FreneticLLC/KeyboardChatterBlocker</description>
     <summary>KeyboardChatterBlocker is a quick handy tool to block mechanical keyboard chatter on Windows PCs. For more information view the GitHub readme at https://github.com/FreneticLLC/KeyboardChatterBlocker</summary>
