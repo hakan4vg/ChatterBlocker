@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>keyboard-chatter-blocker</id>
+    <version>1.17</version>
+    <title>KeyboardChatterBlocker (Install)</title>
+    <authors>Frenetic LLC</authors>
+    <owners>Frenetic LLC</owners>
+    <licenseUrl>https://github.com/FreneticLLC/KeyboardChatterBlocker/blob/master/LICENSE.txt</licenseUrl>
+    <projectUrl>https://github.com/FreneticLLC/KeyboardChatterBlocker/blob/master/README.md</projectUrl>
+    <iconUrl>https://github.com/FreneticLLC/KeyboardChatterBlocker/blob/master/KeyboardChatterBlocker/keyboard.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>KeyboardChatterBlocker is a quick handy tool to block mechanical keyboard chatter on Windows PCs. For more information view the GitHub readme at https://github.com/FreneticLLC/KeyboardChatterBlocker</description>
+    <summary>KeyboardChatterBlocker is a quick handy tool to block mechanical keyboard chatter on Windows PCs. For more information view the GitHub readme at https://github.com/FreneticLLC/KeyboardChatterBlocker</summary>
+    <releaseNotes>https://github.com/FreneticLLC/KeyboardChatterBlocker/releases</releaseNotes>
+    <tags>mechanical keyboard chatter blocker</tags>
+    <projectSourceUrl>https://github.com/FreneticLLC/KeyboardChatterBlocker</projectSourceUrl>
+    <packageSourceUrl>https://github.com/FreneticLLC/KeyboardChatterBlocker</packageSourceUrl>
+    <docsUrl>https://github.com/FreneticLLC/KeyboardChatterBlocker/blob/master/README.md</docsUrl>
+    <bugTrackerUrl>https://github.com/FreneticLLC/KeyboardChatterBlocker/issues</bugTrackerUrl>
+  </metadata>
+</package>
