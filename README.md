@@ -5,6 +5,8 @@ Keyboard chatter blocker is a quick handy tool to block mechanical keyboard chat
 
 Click [here](#setup) for the steps to get it running.
 
+Talk to us on Discord @ https://discord.gg/eggWVJt
+
 ---
 
 ## The Problem
@@ -49,14 +51,12 @@ I've taken a similar approach to the software solutions mentioned above, but wit
     1. Download the [Installer Wizard (.msi)](https://github.com/FreneticLLC/KeyboardChatterBlocker/releases)
     2. Run the wizard, and configure it however you prefer.
     3. At the end of the wizard, the program will automatically launch.
+- Or C:
+    1. If you use [Chocolatey](https://community.chocolatey.org/), you can install [Keyboard-Chatter-Blocker](https://community.chocolatey.org/packages/keyboard-chatter-blocker) via `choco install keyboard-chatter-blocker` and launch it via `KeyboardChatterBlocker.exe`
 4. Configure settings as preferred, test with care (check the "Enable" box to have the blocker active, uncheck it if it's in the way)
     - To configure individual keys, switch to the "Configure Keys" tab, and press "Add Key" to add a key, then in the form that pops up, press the key you want to add. You can then edit it's value in the grid by double-clicking the number and typing whatever you please in place. To remove a key's explicit custom value, simply double-click the `[X]` for it under "Remove".
 5. Check the "Enable", "Start In Tray", and "Start With Windows" boxes so it'll be active and just always be there.
 6. Click the "X" to close the window (the program will hide in the system tray for so long as "Start In Tray" is checked), and type happily with the program protecting you from chatter! If you need to adjust configuration, just go open the program in the tray and adjust freely. To stop the program from being in the way if you decide you don't need it anymore, just uncheck "Start In Tray" and "Start With Windows" ... once you close it after that, it will be gone until you specifically open it back up again.
-
-### Chocolatey
-
-If you use [Chocolatey](https://community.chocolatey.org/), you can install [Keyboard-Chatter-Blocker](https://community.chocolatey.org/packages/keyboard-chatter-blocker) via `choco install keyboard-chatter-blocker` and launch it via `KeyboardChatterBlocker.exe`
 
 ## General Notes
 
