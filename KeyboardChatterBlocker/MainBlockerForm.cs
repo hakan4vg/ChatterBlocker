@@ -46,7 +46,10 @@ namespace KeyboardChatterBlocker
         /// </summary>
         public void HideForm()
         {
-            TrayIcon.Visible = true;
+            if (!Program.DisableTrayIcon)
+            {
+                TrayIcon.Visible = true;
+            }
             Visible = false;
         }
 
@@ -309,7 +312,10 @@ namespace KeyboardChatterBlocker
             {
                 WindowState = FormWindowState.Minimized;
                 ShowInTaskbar = false;
-                TrayIcon.Visible = true;
+                if (!Program.DisableTrayIcon)
+                {
+                    TrayIcon.Visible = true;
+                }
                 Timer hideProperlyTimer = new Timer() { Interval = 100 };
                 hideProperlyTimer.Tick += (tickSender, tickArgs) =>
                 {

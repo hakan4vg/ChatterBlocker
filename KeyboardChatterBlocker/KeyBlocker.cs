@@ -190,11 +190,14 @@ namespace KeyboardChatterBlocker
                         }
                     });
                     break;
+                case "hotkey_tempblock":
+                    BlockAllInputsKeySet = settingValue.Split('+').Select(s => s.Trim().ToLowerInvariant()).Where(s => !string.IsNullOrWhiteSpace(s)).Select(s => (Keys)Enum.Parse(typeof(Keys), s, true)).ToArray();
+                    break;
                 case "measure_from":
                     MeasureMode = (MeasureFrom)Enum.Parse(typeof(MeasureFrom), settingValue, true);
                     break;
-                case "hotkey_tempblock":
-                    BlockAllInputsKeySet = settingValue.Split('+').Select(s => s.Trim().ToLowerInvariant()).Where(s => !string.IsNullOrWhiteSpace(s)).Select(s => (Keys)Enum.Parse(typeof(Keys), s, true)).ToArray();
+                case "disable_tray_icon":
+                    Program.DisableTrayIcon = SettingAsBool(settingValue);
                     break;
             }
         }
@@ -222,6 +225,10 @@ namespace KeyboardChatterBlocker
             result.Append("is_enabled: ").Append(IsEnabled ? "true" : "false").Append("\n");
             result.Append("global_chatter: ").Append(GlobalChatterTimeLimit).Append("\n");
             result.Append("hide_in_system_tray: ").Append(Program.HideInSystemTray ? "true" : "false").Append("\n");
+            if (Program.DisableTrayIcon)
+            {
+                result.Append("disable_tray_icon: true\n");
+            }
             result.Append($"measure_from: {MeasureMode}\n");
             result.Append("\n");
             foreach (KeyValuePair<Keys, uint?> chatterTimes in KeysToChatterTime.MainDictionary)

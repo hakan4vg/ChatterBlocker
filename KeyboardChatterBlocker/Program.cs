@@ -26,6 +26,11 @@ namespace KeyboardChatterBlocker
         public static bool HideInSystemTray = false;
 
         /// <summary>
+        /// Whether the tray icon should be disabled even when the program is "hidden in system tray".
+        /// </summary>
+        public static bool DisableTrayIcon = false;
+
+        /// <summary>
         /// The main form, <see cref="MainBlockerForm"/>.
         /// </summary>
         public static MainBlockerForm MainForm;
