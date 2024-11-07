@@ -176,6 +176,20 @@ namespace KeyboardChatterBlocker
                     Hotkeys["tempdisable"] = settingValue;
                     HotKeys.Register(settingValue, () => TempDisable = true);
                     break;
+                case "hotkey_showform":
+                    Hotkeys["showform"] = settingValue;
+                    HotKeys.Register(settingValue, () =>
+                    {
+                        if (Program.MainForm.Visible)
+                        {
+                            Program.MainForm.HideForm();
+                        }
+                        else
+                        {
+                            Program.MainForm.ShowForm();
+                        }
+                    });
+                    break;
                 case "measure_from":
                     MeasureMode = (MeasureFrom)Enum.Parse(typeof(MeasureFrom), settingValue, true);
                     break;
