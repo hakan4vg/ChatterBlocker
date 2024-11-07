@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-using System.Diagnostics;
 using System.IO;
 
 namespace KeyboardChatterBlocker
@@ -155,6 +153,9 @@ namespace KeyboardChatterBlocker
                 case "auto_disable_on_fullscreen":
                     AutoDisableOnFullscreen = SettingAsBool(settingValue);
                     break;
+                case "other_key_resets_timeout":
+                    OtherKeyResetsTimeout = SettingAsBool(settingValue);
+                    break;
                 case "hotkey_toggle":
                     Hotkeys["toggle"] = settingValue;
                     HotKeys.Register(settingValue, () => Program.MainForm.SetEnabled(!IsEnabled));
@@ -222,6 +223,7 @@ namespace KeyboardChatterBlocker
                 result.Append("auto_disable_programs: ").Append(string.Join("/", AutoDisablePrograms)).Append("\n");
             }
             result.Append("auto_disable_on_fullscreen: ").Append(AutoDisableOnFullscreen ? "true" : "false").Append("\n");
+            result.Append("other_key_resets_timeout: ").Append(OtherKeyResetsTimeout ? "true" : "false").Append("\n");
             result.Append("\n");
             foreach (KeyValuePair<string, string> pair in Hotkeys)
             {
@@ -310,9 +312,19 @@ namespace KeyboardChatterBlocker
         public bool AutoDisableOnFullscreen = false;
 
         /// <summary>
+        /// If true, reset timeouts for keys when another key is pressed.
+        /// </summary>
+        public bool OtherKeyResetsTimeout = false;
+
+        /// <summary>
         /// Whether any key presses have occurred (and thus stats have changed).
         /// </summary>
         public bool AnyKeyChange = false;
+
+        /// <summary>
+        /// The last key pressed, for <see cref="OtherKeyResetsTimeout"/>.
+        /// </summary>
+        public static Keys LastPressed = Keys.None;
 
         /// <summary>
         /// Action to play a sound when chatter is detected.
@@ -343,6 +355,16 @@ namespace KeyboardChatterBlocker
             if (ShouldBlockAll)
             {
                 return false;
+            }
+            if (OtherKeyResetsTimeout)
+            {
+                if (key != LastPressed)
+                {
+                    LastPressed = key;
+                    KeysToLastPressTime[key] = timeNow;
+                    return true;
+                }
+                LastPressed = key;
             }
             if (timeLast > timeNow) // In the future = number handling mixup, just allow it.
             {

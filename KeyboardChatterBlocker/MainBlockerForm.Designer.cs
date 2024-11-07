@@ -69,6 +69,7 @@
             this.otherSettingsTabPage = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
             this.MeasureFromComboBox = new System.Windows.Forms.ComboBox();
+            this.OtherKeyResetsCheckbox = new System.Windows.Forms.CheckBox();
             this.AboutTab = new System.Windows.Forms.TabPage();
             this.versionAboutLabel = new System.Windows.Forms.Label();
             this.AboutLinkLabel = new System.Windows.Forms.LinkLabel();
@@ -519,6 +520,17 @@
             this.MeasureFromComboBox.TabIndex = 1;
             this.MeasureFromComboBox.SelectedIndexChanged += new System.EventHandler(this.MeasureFromComboBox_SelectedIndexChanged);
             // 
+            // otherKeyResetsCheckbox
+            // 
+            this.OtherKeyResetsCheckbox.AutoSize = true;
+            this.OtherKeyResetsCheckbox.Location = new System.Drawing.Point(4, 4);
+            this.OtherKeyResetsCheckbox.Name = "otherKeyResetsCheckbox";
+            this.OtherKeyResetsCheckbox.Size = new System.Drawing.Size(150, 17);
+            this.OtherKeyResetsCheckbox.TabIndex = 0;
+            this.OtherKeyResetsCheckbox.Text = "Other Keys Reset Timeout";
+            this.OtherKeyResetsCheckbox.UseVisualStyleBackColor = true;
+            this.OtherKeyResetsCheckbox.CheckedChanged += new System.EventHandler(this.OtherKeyReset_CheckedChanged);
+            // 
             // AboutTab
             // 
             this.AboutTab.Controls.Add(this.versionAboutLabel);
@@ -705,6 +717,7 @@
         private System.Windows.Forms.Label versionAboutLabel;
         private System.Windows.Forms.CheckBox AutoDisableOnFullscreenCheckbox;
         private System.Windows.Forms.TabPage otherSettingsTabPage;
+        private System.Windows.Forms.CheckBox OtherKeyResetsCheckbox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox MeasureFromComboBox;
     }
