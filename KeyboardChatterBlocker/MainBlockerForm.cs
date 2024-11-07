@@ -326,6 +326,7 @@ namespace KeyboardChatterBlocker
             AutoDisableProgramsList.Items.AddRange(Program.Blocker.AutoDisablePrograms.Select(s => new ListViewItem(s)).ToArray());
             AutoDisableOnFullscreenCheckbox.Checked = Program.Blocker.AutoDisableOnFullscreen;
             ChatterThresholdBox.Value = Program.Blocker.GlobalChatterTimeLimit;
+            MeasureFromComboBox.Text = Program.Blocker.MeasureMode.ToString();
             EnabledCheckbox.Checked = Program.Blocker.IsEnabled;
             StartWithWindowsCheckbox.Checked = File.Exists(StartupLinkPath);
             StatsUpdateTimer = new Timer { Interval = 1000 };
@@ -717,6 +718,18 @@ namespace KeyboardChatterBlocker
             }
             Program.Blocker.AutoDisableOnFullscreen = AutoDisableOnFullscreenCheckbox.Checked;
             Program.Blocker.SaveConfig();
+        }
+
+        /// <summary>
+        /// Event method to handle the 'measure from' dropdown state changing.
+        /// </summary>
+        private void MeasureFromComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Enum.TryParse(MeasureFromComboBox.Text, true, out KeyBlocker.MeasureFrom mode))
+            {
+                Program.Blocker.MeasureMode = mode;
+                Program.Blocker.SaveConfig();
+            }
         }
     }
 }

@@ -66,6 +66,9 @@
             this.ShowProgramListButton = new System.Windows.Forms.Button();
             this.AddToListButton = new System.Windows.Forms.Button();
             this.AddProgramTextBox = new System.Windows.Forms.TextBox();
+            this.otherSettingsTabPage = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.MeasureFromComboBox = new System.Windows.Forms.ComboBox();
             this.AboutTab = new System.Windows.Forms.TabPage();
             this.versionAboutLabel = new System.Windows.Forms.Label();
             this.AboutLinkLabel = new System.Windows.Forms.LinkLabel();
@@ -85,6 +88,7 @@
             this.KeysTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ConfigureKeysGrid)).BeginInit();
             this.AutoDisableProgramsTabPage.SuspendLayout();
+            this.otherSettingsTabPage.SuspendLayout();
             this.AboutTab.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -252,6 +256,7 @@
             this.TabControl1.Controls.Add(this.StatsTabPage);
             this.TabControl1.Controls.Add(this.KeysTabPage);
             this.TabControl1.Controls.Add(this.AutoDisableProgramsTabPage);
+            this.TabControl1.Controls.Add(this.otherSettingsTabPage);
             this.TabControl1.Controls.Add(this.AboutTab);
             this.TabControl1.Location = new System.Drawing.Point(13, 89);
             this.TabControl1.Name = "TabControl1";
@@ -481,6 +486,39 @@
             this.AddProgramTextBox.Enter += new System.EventHandler(this.AddProgramTextBox_Enter);
             this.AddProgramTextBox.Leave += new System.EventHandler(this.AddProgramTextBox_Leave);
             // 
+            // otherSettingsTabPage
+            // 
+            this.otherSettingsTabPage.Controls.Add(this.label1);
+            this.otherSettingsTabPage.Controls.Add(this.MeasureFromComboBox);
+            this.otherSettingsTabPage.Controls.Add(this.OtherKeyResetsCheckbox);
+            this.otherSettingsTabPage.Location = new System.Drawing.Point(4, 22);
+            this.otherSettingsTabPage.Name = "otherSettingsTabPage";
+            this.otherSettingsTabPage.Size = new System.Drawing.Size(431, 290);
+            this.otherSettingsTabPage.TabIndex = 5;
+            this.otherSettingsTabPage.Text = "Other Settings";
+            this.otherSettingsTabPage.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Measure From:";
+            // 
+            // measureFromComboBox
+            // 
+            this.MeasureFromComboBox.FormattingEnabled = true;
+            this.MeasureFromComboBox.Items.AddRange(new object[] {
+            "Press",
+            "Release"});
+            this.MeasureFromComboBox.Location = new System.Drawing.Point(87, 24);
+            this.MeasureFromComboBox.Name = "measureFromComboBox";
+            this.MeasureFromComboBox.Size = new System.Drawing.Size(121, 21);
+            this.MeasureFromComboBox.TabIndex = 1;
+            this.MeasureFromComboBox.SelectedIndexChanged += new System.EventHandler(this.MeasureFromComboBox_SelectedIndexChanged);
+            // 
             // AboutTab
             // 
             this.AboutTab.Controls.Add(this.versionAboutLabel);
@@ -513,7 +551,7 @@
             this.AboutLinkLabel.AutoSize = true;
             this.AboutLinkLabel.Location = new System.Drawing.Point(47, 157);
             this.AboutLinkLabel.Name = "AboutLinkLabel";
-            this.AboutLinkLabel.Size = new System.Drawing.Size(308, 13);
+            this.AboutLinkLabel.Size = new System.Drawing.Size(277, 13);
             this.AboutLinkLabel.TabIndex = 5;
             this.AboutLinkLabel.TabStop = true;
             this.AboutLinkLabel.Text = "https://github.com/FreneticLLC/KeyboardChatterBlocker";
@@ -555,9 +593,9 @@
             this.AboutLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AboutLabel2.Location = new System.Drawing.Point(11, 42);
             this.AboutLabel2.Name = "AboutLabel2";
-            this.AboutLabel2.Size = new System.Drawing.Size(190, 13);
+            this.AboutLabel2.Size = new System.Drawing.Size(274, 13);
             this.AboutLabel2.TabIndex = 1;
-            this.AboutLabel2.Text = "Created by Frenetic LLC";
+            this.AboutLabel2.Text = "Created by Alex \"mcmonkey\" Goodwin and Frenetic LLC";
             // 
             // AboutLabel1
             // 
@@ -610,6 +648,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ConfigureKeysGrid)).EndInit();
             this.AutoDisableProgramsTabPage.ResumeLayout(false);
             this.AutoDisableProgramsTabPage.PerformLayout();
+            this.otherSettingsTabPage.ResumeLayout(false);
+            this.otherSettingsTabPage.PerformLayout();
             this.AboutTab.ResumeLayout(false);
             this.AboutTab.PerformLayout();
             this.ResumeLayout(false);
@@ -664,6 +704,9 @@
         private System.Windows.Forms.ToolStripMenuItem ContextMenuExitButton;
         private System.Windows.Forms.Label versionAboutLabel;
         private System.Windows.Forms.CheckBox AutoDisableOnFullscreenCheckbox;
+        private System.Windows.Forms.TabPage otherSettingsTabPage;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox MeasureFromComboBox;
     }
 }
 
