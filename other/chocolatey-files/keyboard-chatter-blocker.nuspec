@@ -4,8 +4,8 @@
     <id>keyboard-chatter-blocker</id>
     <version>1.18</version>
     <title>KeyboardChatterBlocker (Install)</title>
-    <authors>Frenetic LLC</authors>
-    <owners>Frenetic LLC</owners>
+    <authors>mcmonkey</authors>
+    <owners>mcmonkey</owners>
     <licenseUrl>https://github.com/FreneticLLC/KeyboardChatterBlocker/blob/master/LICENSE.txt</licenseUrl>
     <projectUrl>https://github.com/FreneticLLC/KeyboardChatterBlocker/blob/master/README.md</projectUrl>
     <iconUrl>https://cdn.freneticllc.com/keyboard.ico</iconUrl>
