@@ -524,12 +524,7 @@ namespace KeyboardChatterBlocker
             form.ShowDialog(this);
             if (!result.HasValue)
             {
-                // The enter key doesn't track right, so just make sure it's always present.
-                if (Program.Blocker.KeysToChatterTime[Keys.Enter].HasValue)
-                {
-                    return;
-                }
-                result = Keys.Enter;
+                return;
             }
             Program.Blocker.KeysToChatterTime[result.Value] = Program.Blocker.GlobalChatterTimeLimit;
             Program.Blocker.SaveConfig();
