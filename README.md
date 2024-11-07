@@ -54,6 +54,10 @@ I've taken a similar approach to the software solutions mentioned above, but wit
 5. Check the "Enable", "Start In Tray", and "Start With Windows" boxes so it'll be active and just always be there.
 6. Click the "X" to close the window (the program will hide in the system tray for so long as "Start In Tray" is checked), and type happily with the program protecting you from chatter! If you need to adjust configuration, just go open the program in the tray and adjust freely. To stop the program from being in the way if you decide you don't need it anymore, just uncheck "Start In Tray" and "Start With Windows" ... once you close it after that, it will be gone until you specifically open it back up again.
 
+### Chocolatey
+
+If you use [Chocolatey](https://community.chocolatey.org/), you can install [Keyboard-Chatter-Blocker](https://community.chocolatey.org/packages/keyboard-chatter-blocker) via `choco install keyboard-chatter-blocker` and launch it via `KeyboardChatterBlocker.exe`
+
 ## General Notes
 
 - You can theoretically block any key on a keyboard that registers as a standard keypress. This includes weird special keys like a volume wheel. You might want to set volume wheels to threshold of zero if you have one. Extremely specialized keys (such as G Keys) might not be standard keypresses and thus not be blockable. If in doubt: try it and see!
