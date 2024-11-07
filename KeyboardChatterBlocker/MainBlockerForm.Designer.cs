@@ -516,7 +516,7 @@
             this.AboutLinkLabel.Size = new System.Drawing.Size(308, 13);
             this.AboutLinkLabel.TabIndex = 5;
             this.AboutLinkLabel.TabStop = true;
-            this.AboutLinkLabel.Text = "https://github.com/mcmonkeyprojects/KeyboardChatterBlocker";
+            this.AboutLinkLabel.Text = "https://github.com/FreneticLLC/KeyboardChatterBlocker";
             this.AboutLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.AboutLinkLabel_LinkClicked);
             // 
             // AboutLabel5
@@ -557,7 +557,7 @@
             this.AboutLabel2.Name = "AboutLabel2";
             this.AboutLabel2.Size = new System.Drawing.Size(190, 13);
             this.AboutLabel2.TabIndex = 1;
-            this.AboutLabel2.Text = "Created by Alex \"mcmonkey\" Goodwin";
+            this.AboutLabel2.Text = "Created by Frenetic LLC";
             // 
             // AboutLabel1
             // 

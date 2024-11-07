@@ -523,7 +523,7 @@ namespace KeyboardChatterBlocker
         /// </summary>
         private void AboutLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://github.com/mcmonkeyprojects/KeyboardChatterBlocker");
+            Process.Start("https://github.com/FreneticLLC/KeyboardChatterBlocker");
         }
 
         /// <summary>

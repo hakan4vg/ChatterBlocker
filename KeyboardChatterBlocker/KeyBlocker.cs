@@ -202,7 +202,7 @@ namespace KeyboardChatterBlocker
         {
             StringBuilder result = new StringBuilder(2048);
             result.Append("# KeyboardChatterBlocker configuration file\n");
-            result.Append("# View README file at https://github.com/mcmonkeyprojects/KeyboardChatterBlocker\n");
+            result.Append("# View README file at https://github.com/FreneticLLC/KeyboardChatterBlocker\n");
             result.Append("\n");
             result.Append("is_enabled: ").Append(IsEnabled ? "true" : "false").Append("\n");
             result.Append("global_chatter: ").Append(GlobalChatterTimeLimit).Append("\n");
