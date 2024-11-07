@@ -56,6 +56,10 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'SignedReleaseBuild'">
+    <OutputPath>bin\Release\</OutputPath>
+    <PostBuildEvent>$(SolutionDir)\..\signing\sign-kbc.bat</PostBuildEvent>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
