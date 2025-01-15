@@ -14,14 +14,14 @@ namespace KeyboardChatterBlocker
     public class KeyBlocker
     {
         /// <summary>
-        /// Path of the local app data config file IF used.
+        /// Folder path where config and related files will be stored.
         /// </summary>
-        private static readonly string LOCAL_APP_DATA_PATH = $"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}/KeyboardChatterBlocker/config.txt";
+        public static readonly string ConfigFolder = Application.ExecutablePath.Contains("Program Files") ? $"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}/KeyboardChatterBlocker" : ".";
 
         /// <summary>
         /// Location of the config file.
         /// </summary>
-        public static readonly string CONFIG_FILE = Application.ExecutablePath.Contains("Program Files") ? LOCAL_APP_DATA_PATH : "./config.txt";
+        public static readonly string CONFIG_FILE = $"{ConfigFolder}/config.txt";
 
         /// <summary>
         /// External Windows API call. Gets the current tick count as a 64-bit (ulong) value.
@@ -389,9 +389,7 @@ namespace KeyboardChatterBlocker
         /// <summary>
         /// Path of the stats data file from either local app data or the same directory as the executable
         /// </summary>
-        private static readonly string BlockerStatsFilePath = Application.ExecutablePath.Contains("Program Files")
-            ? $"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}/KeyboardChatterBlocker/blocker_stats.csv"
-            : "./blocker_stats.csv";
+        private static readonly string BlockerStatsFilePath = $"{ConfigFolder}/blocker_stats.csv";
 
         /// <summary>
         /// Save stats data to file.
