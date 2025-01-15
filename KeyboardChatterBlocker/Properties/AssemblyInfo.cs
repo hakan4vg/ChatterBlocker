@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("KeyboardChatterBlocker")]
-[assembly: AssemblyCopyright("Copyright © Frenetic LLC 2024")]
+[assembly: AssemblyCopyright("Copyright © Frenetic LLC 2024-2025")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
