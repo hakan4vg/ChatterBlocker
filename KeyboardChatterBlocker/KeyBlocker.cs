@@ -157,6 +157,9 @@ namespace KeyboardChatterBlocker
                 case "global_chatter":
                     GlobalChatterTimeLimit = uint.Parse(settingValue);
                     break;
+                case "minimum_chatter_time":
+                    MinimumChatterTime = uint.Parse(settingValue);
+                    break;
                 case "hide_in_system_tray":
                     Program.HideInSystemTray = SettingAsBool(settingValue);
                     break;
@@ -254,6 +257,7 @@ namespace KeyboardChatterBlocker
                 result.Append($"save_stats: true\n");
             }
             result.Append($"measure_from: {MeasureMode}\n");
+            result.Append($"minimum_chatter_time: {MinimumChatterTime}\n");
             result.Append("\n");
             foreach (KeyValuePair<Keys, uint?> chatterTimes in KeysToChatterTime.MainDictionary)
             {
@@ -325,6 +329,11 @@ namespace KeyboardChatterBlocker
         /// The global chatter time limit, in milliseconds.
         /// </summary>
         public uint GlobalChatterTimeLimit = 100;
+
+        /// <summary>
+        /// The global minimum chatter time, in milliseconds.
+        /// </summary>
+        public uint MinimumChatterTime = 0;
 
         /// <summary>
         /// A mapping of keys to their allowed chatter time, in milliseconds. If HasValue is false, use global chatter time limit.
@@ -475,12 +484,9 @@ namespace KeyboardChatterBlocker
                 return true;
             }
             uint maxTime = KeysToChatterTime[key] ?? (defaultZero ? 0 : GlobalChatterTimeLimit);
-            if (timeNow >= timeLast + maxTime) // Time past the chatter limit = enough delay passed, allow it.
-            {
-                KeysToLastPressTime[key] = timeNow;
-                return true;
-            }
-            if (timeNow <= timeLast + maxTime - 9000) // If more than 9 seconds behind, something's gone wrong, so let through anyway.
+            ulong timePassed = timeNow - timeLast;
+            if (timePassed >= maxTime // Time past the chatter limit = enough delay passed, allow it.
+                || timePassed < MinimumChatterTime) // Or too fast (below user configured minimum) = possible bug or similar oddity, allow it.
             {
                 KeysToLastPressTime[key] = timeNow;
                 return true;

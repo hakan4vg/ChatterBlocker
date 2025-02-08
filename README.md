@@ -72,6 +72,7 @@ I've taken a similar approach to the software solutions mentioned above, but wit
 **If you're the type of person to care about the config file and want to edit it manually,** The config file is literally just a `config.txt` file in the same folder as the executable (unless you installed into Program Files, in which case the config file is at `%localappdata%/KeyboardChatterBlocker`). Each line is one setting to apply. Prefix a line with `#` to make it a comment. All uncommented (and non-blank) lines are settings, of the form `name: value`. The following settings are available:
 - `is_enabled`: Set to `true` to be activated as normal, or `false` to turn the chatter protection off.
 - `global_chatter`: Set to the time (in ms) for the default global keyboard chatter threshold.
+- `minimum_chatter_time`: Set to the time (in ms) for the minimum allowable chatter. This is a workaround option for bugged inputs that "chatter" with a 0ms hit or similar, to exclude them from chatter detection. If set to 0, this setting does nothing.
 - `hide_in_system_tray`: Set to `true` to make the program hide in the system tray at start, or `false` to load as a visible GUI app.
 - `keys.<KEY>`: (for example, `keys.H`) set to the time (in ms) for that specific key's keyboard chatter threshold.
 - `auto_disable_programs`: Set to a list of executable names (case insensitive, without the `.exe`) separated by slashes (like `some_video_game/other_game`) that will cause the chatter block to automatically disable whenever that program is open.
