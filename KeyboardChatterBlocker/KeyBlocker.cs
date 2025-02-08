@@ -484,7 +484,7 @@ namespace KeyboardChatterBlocker
                 return true;
             }
             uint maxTime = KeysToChatterTime[key] ?? (defaultZero ? 0 : GlobalChatterTimeLimit);
-            ulong timePassed = timeNow - timeLast;
+            ulong timePassed = unchecked(timeNow - timeLast); // unchecked means if time runs backwards it will wrap to super large and be ignored
             if (timePassed >= maxTime // Time past the chatter limit = enough delay passed, allow it.
                 || timePassed < MinimumChatterTime) // Or too fast (below user configured minimum) = possible bug or similar oddity, allow it.
             {
@@ -494,7 +494,7 @@ namespace KeyboardChatterBlocker
             // All else = not enough time elapsed, deny it.
             StatsKeyChatter[key]++;
             KeysWereDownBlocked[key] = true;
-            KeyBlockedEvent?.Invoke(new KeyBlockedEventArgs() { Key = key, Time = (uint)(timeNow - timeLast) });
+            KeyBlockedEvent?.Invoke(new KeyBlockedEventArgs() { Key = key, Time = (uint)timePassed });
             PlayNotification();
             return false;
         }
