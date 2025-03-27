@@ -63,11 +63,6 @@ namespace KeyboardChatterBlocker
             Program.Interceptor = new KeyboardInterceptor(Program.Blocker);
             Program.Blocker.AutoEnableMouse();
             Application.AddMessageFilter(new HotKeys.Internal.MessageFilter());
-            if (Program.HideInSystemTray)
-            {
-                WindowState = FormWindowState.Minimized;
-                ShowInTaskbar = false;
-            }
             Process currentProcess = Process.GetCurrentProcess();
             Process[] priorProcesses = Process.GetProcesses().Where(p => p.ProcessName == currentProcess.ProcessName && p.Id != currentProcess.Id).ToArray();
             if (priorProcesses.Any())
@@ -310,8 +305,6 @@ namespace KeyboardChatterBlocker
             TrayIconCheckbox.Checked = Program.HideInSystemTray;
             if (Program.HideInSystemTray)
             {
-                WindowState = FormWindowState.Minimized;
-                ShowInTaskbar = false;
                 if (!Program.DisableTrayIcon)
                 {
                     TrayIcon.Visible = true;
