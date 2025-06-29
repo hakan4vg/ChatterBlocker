@@ -66,6 +66,11 @@
             this.ShowProgramListButton = new System.Windows.Forms.Button();
             this.AddToListButton = new System.Windows.Forms.Button();
             this.AddProgramTextBox = new System.Windows.Forms.TextBox();
+            this.MouseTabPage = new System.Windows.Forms.TabPage();
+            this.MouseSecondaryThresholdBox = new System.Windows.Forms.NumericUpDown();
+            this.MouseSecondaryCheckbox = new System.Windows.Forms.CheckBox();
+            this.MousePrimaryThresholdBox = new System.Windows.Forms.NumericUpDown();
+            this.MousePrimaryCheckbox = new System.Windows.Forms.CheckBox();
             this.otherSettingsTabPage = new System.Windows.Forms.TabPage();
             this.SaveStatsCheckbox = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -89,6 +94,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.StatsGrid)).BeginInit();
             this.KeysTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ConfigureKeysGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MouseSecondaryThresholdBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MousePrimaryThresholdBox)).BeginInit();
+            this.MouseTabPage.SuspendLayout();
             this.AutoDisableProgramsTabPage.SuspendLayout();
             this.otherSettingsTabPage.SuspendLayout();
             this.AboutTab.SuspendLayout();
@@ -257,6 +265,7 @@
             this.TabControl1.Controls.Add(this.ChatterLogTabPage);
             this.TabControl1.Controls.Add(this.StatsTabPage);
             this.TabControl1.Controls.Add(this.KeysTabPage);
+            this.TabControl1.Controls.Add(this.MouseTabPage);
             this.TabControl1.Controls.Add(this.AutoDisableProgramsTabPage);
             this.TabControl1.Controls.Add(this.otherSettingsTabPage);
             this.TabControl1.Controls.Add(this.AboutTab);
@@ -380,28 +389,110 @@
             this.ConfigureKeysGrid.TabIndex = 0;
             this.ConfigureKeysGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ConfigureKeysGrid_CellContentDoubleClick);
             this.ConfigureKeysGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ConfigureKeysGrid_KeyDown);
-            // 
+            //
             // ConfigureKeyColumn
-            // 
+            //
             this.ConfigureKeyColumn.HeaderText = "Key";
             this.ConfigureKeyColumn.Name = "ConfigureKeyColumn";
             this.ConfigureKeyColumn.ReadOnly = true;
-            // 
+            //
             // ConfigureThresholdColumn
-            // 
+            //
             this.ConfigureThresholdColumn.HeaderText = "Chatter Threshold";
             this.ConfigureThresholdColumn.Name = "ConfigureThresholdColumn";
             this.ConfigureThresholdColumn.ReadOnly = true;
             this.ConfigureThresholdColumn.Width = 150;
-            // 
+            //
             // RemoveColumn
-            // 
+            //
             this.RemoveColumn.HeaderText = "Remove";
             this.RemoveColumn.Name = "RemoveColumn";
             this.RemoveColumn.ReadOnly = true;
-            // 
+            //
+            // MouseTabPage
+            //
+            this.MouseTabPage.Controls.Add(this.MouseSecondaryThresholdBox);
+            this.MouseTabPage.Controls.Add(this.MouseSecondaryCheckbox);
+            this.MouseTabPage.Controls.Add(this.MousePrimaryThresholdBox);
+            this.MouseTabPage.Controls.Add(this.MousePrimaryCheckbox);
+            this.MouseTabPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MouseTabPage.Location = new System.Drawing.Point(4, 22);
+            this.MouseTabPage.Name = "MouseTabPage";
+            this.MouseTabPage.Size = new System.Drawing.Size(431, 290);
+            this.MouseTabPage.TabIndex = 3;
+            this.MouseTabPage.Text = "Mouse";
+            this.MouseTabPage.UseVisualStyleBackColor = true;
+            //
+            // MousePrimaryCheckbox
+            //
+            this.MousePrimaryCheckbox.AutoSize = true;
+            this.MousePrimaryCheckbox.Location = new System.Drawing.Point(6, 6);
+            this.MousePrimaryCheckbox.Name = "MousePrimaryCheckbox";
+            this.MousePrimaryCheckbox.Size = new System.Drawing.Size(144, 17);
+            this.MousePrimaryCheckbox.TabIndex = 0;
+            this.MousePrimaryCheckbox.Text = "Block Primary Buttons";
+            this.MousePrimaryCheckbox.UseVisualStyleBackColor = true;
+            this.MousePrimaryCheckbox.CheckedChanged += new System.EventHandler(this.MouseSetting_Changed);
+            //
+            // MousePrimaryThresholdBox
+            //
+            this.MousePrimaryThresholdBox.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.MousePrimaryThresholdBox.Location = new System.Drawing.Point(160, 5);
+            this.MousePrimaryThresholdBox.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.MousePrimaryThresholdBox.Name = "MousePrimaryThresholdBox";
+            this.MousePrimaryThresholdBox.Size = new System.Drawing.Size(80, 20);
+            this.MousePrimaryThresholdBox.TabIndex = 1;
+            this.MousePrimaryThresholdBox.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.MousePrimaryThresholdBox.ValueChanged += new System.EventHandler(this.MouseSetting_Changed);
+            //
+            // MouseSecondaryCheckbox
+            //
+            this.MouseSecondaryCheckbox.AutoSize = true;
+            this.MouseSecondaryCheckbox.Location = new System.Drawing.Point(6, 32);
+            this.MouseSecondaryCheckbox.Name = "MouseSecondaryCheckbox";
+            this.MouseSecondaryCheckbox.Size = new System.Drawing.Size(158, 17);
+            this.MouseSecondaryCheckbox.TabIndex = 2;
+            this.MouseSecondaryCheckbox.Text = "Block Secondary Buttons";
+            this.MouseSecondaryCheckbox.UseVisualStyleBackColor = true;
+            this.MouseSecondaryCheckbox.CheckedChanged += new System.EventHandler(this.MouseSetting_Changed);
+            //
+            // MouseSecondaryThresholdBox
+            //
+            this.MouseSecondaryThresholdBox.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.MouseSecondaryThresholdBox.Location = new System.Drawing.Point(160, 31);
+            this.MouseSecondaryThresholdBox.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.MouseSecondaryThresholdBox.Name = "MouseSecondaryThresholdBox";
+            this.MouseSecondaryThresholdBox.Size = new System.Drawing.Size(80, 20);
+            this.MouseSecondaryThresholdBox.TabIndex = 3;
+            this.MouseSecondaryThresholdBox.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.MouseSecondaryThresholdBox.ValueChanged += new System.EventHandler(this.MouseSetting_Changed);
+            //
             // AutoDisableProgramsTabPage
-            // 
+            //
             this.AutoDisableProgramsTabPage.Controls.Add(this.AutoDisableOnFullscreenCheckbox);
             this.AutoDisableProgramsTabPage.Controls.Add(this.AutoDisableProgramsList);
             this.AutoDisableProgramsTabPage.Controls.Add(this.RemoveProgramButton);
@@ -674,6 +765,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.StatsGrid)).EndInit();
             this.KeysTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ConfigureKeysGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MouseSecondaryThresholdBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MousePrimaryThresholdBox)).EndInit();
+            this.MouseTabPage.ResumeLayout(false);
+            this.MouseTabPage.PerformLayout();
             this.AutoDisableProgramsTabPage.ResumeLayout(false);
             this.AutoDisableProgramsTabPage.PerformLayout();
             this.otherSettingsTabPage.ResumeLayout(false);
@@ -737,6 +832,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox MeasureFromComboBox;
         private System.Windows.Forms.CheckBox SaveStatsCheckbox;
+        private System.Windows.Forms.TabPage MouseTabPage;
+        private System.Windows.Forms.CheckBox MousePrimaryCheckbox;
+        private System.Windows.Forms.NumericUpDown MousePrimaryThresholdBox;
+        private System.Windows.Forms.CheckBox MouseSecondaryCheckbox;
+        private System.Windows.Forms.NumericUpDown MouseSecondaryThresholdBox;
     }
 }
 
