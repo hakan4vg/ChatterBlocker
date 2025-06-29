@@ -29,6 +29,25 @@ namespace KeyboardChatterBlocker
         public Timer StatsUpdateTimer;
 
         /// <summary>
+        /// Keys considered primary mouse buttons.
+        /// </summary>
+        private static readonly Keys[] PrimaryMouseKeys =
+        {
+            KeysHelper.KEY_MOUSE_LEFT,
+            KeysHelper.KEY_MOUSE_RIGHT,
+            KeysHelper.KEY_MOUSE_MIDDLE
+        };
+
+        /// <summary>
+        /// Keys considered secondary mouse buttons.
+        /// </summary>
+        private static readonly Keys[] SecondaryMouseKeys =
+        {
+            KeysHelper.KEY_MOUSE_FORWARD,
+            KeysHelper.KEY_MOUSE_BACKWARD
+        };
+
+        /// <summary>
         /// Whether the form is currently hidden from view.
         /// </summary>
         public bool IsHidden => !Visible;
@@ -330,6 +349,10 @@ namespace KeyboardChatterBlocker
             SaveStatsCheckbox.Checked = Program.Blocker.SaveStats;
             StartWithWindowsCheckbox.Checked = File.Exists(StartupLinkPath);
             OtherKeyResetsCheckbox.Checked = Program.Blocker.OtherKeyResetsTimeout;
+            MousePrimaryCheckbox.Checked = PrimaryMouseKeys.Any(k => Program.Blocker.KeysToChatterTime[k].HasValue);
+            MouseSecondaryCheckbox.Checked = SecondaryMouseKeys.Any(k => Program.Blocker.KeysToChatterTime[k].HasValue);
+            MousePrimaryThresholdBox.Value = GetMouseGroupThreshold(PrimaryMouseKeys);
+            MouseSecondaryThresholdBox.Value = GetMouseGroupThreshold(SecondaryMouseKeys);
             StatsUpdateTimer = new Timer { Interval = 1000 };
             StatsUpdateTimer.Tick += StatsUpdateTimer_Tick;
             StatsUpdateTimer.Start();
@@ -344,6 +367,54 @@ namespace KeyboardChatterBlocker
         public void SetEnabled(bool enabled)
         {
             EnabledCheckbox.Checked = enabled;
+        }
+
+        /// <summary>
+        /// Apply the current mouse configuration settings to the blocker.
+        /// </summary>
+        private void ApplyMouseSettings()
+        {
+            if (Loading)
+            {
+                return;
+            }
+            uint primaryVal = (uint)MousePrimaryThresholdBox.Value;
+            uint secondaryVal = (uint)MouseSecondaryThresholdBox.Value;
+            foreach (Keys key in PrimaryMouseKeys)
+            {
+                Program.Blocker.KeysToChatterTime[key] = MousePrimaryCheckbox.Checked ? primaryVal : (uint?)null;
+            }
+            foreach (Keys key in SecondaryMouseKeys)
+            {
+                Program.Blocker.KeysToChatterTime[key] = MouseSecondaryCheckbox.Checked ? secondaryVal : (uint?)null;
+            }
+            Program.Blocker.SaveConfig();
+            PushKeysToGrid();
+        }
+
+        /// <summary>
+        /// Determine the chatter threshold to display for a set of mouse buttons.
+        /// Returns the per-button value if all are equal, otherwise the global chatter limit.
+        /// </summary>
+        private uint GetMouseGroupThreshold(Keys[] group)
+        {
+            uint? value = null;
+            foreach (Keys key in group)
+            {
+                uint? val = Program.Blocker.KeysToChatterTime[key];
+                if (val.HasValue)
+                {
+                    if (value == null)
+                    {
+                        value = val.Value;
+                    }
+                    else if (value.Value != val.Value)
+                    {
+                        return Program.Blocker.GlobalChatterTimeLimit;
+                    }
+                }
+            }
+            return value ?? Program.Blocker.GlobalChatterTimeLimit;
         }
 
         /// <summary>
@@ -752,6 +823,14 @@ namespace KeyboardChatterBlocker
         private void SaveStatsCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             Program.Blocker.SaveStats = SaveStatsCheckbox.Checked;
+        }
+
+        /// <summary>
+        /// Event handler for any mouse setting changes.
+        /// </summary>
+        private void MouseSetting_Changed(object sender, EventArgs e)
+        {
+            ApplyMouseSettings();
         }
     }
 }
